@@ -1,0 +1,15 @@
+node{
+    stage('vcs') {
+    git 'https://github.com/prakashdevops27/game-of-life.git'
+}
+stage('MAven')
+{   
+    sh 'mvn package'
+}
+stage('Result,Test')
+{
+ archiveArtifacts 'https://github.com/wakaleo/game-of-life.git'
+ junit 'gameoflife-web/target/surefire-reports/*xml'
+}
+    
+}
